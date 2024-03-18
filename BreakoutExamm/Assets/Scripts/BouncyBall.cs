@@ -31,6 +31,7 @@ public class BouncyBall : MonoBehaviour
         if (collision.gameObject.CompareTag("Brick"))
         {
             Destroy(collision.gameObject);
+            Debug.Log("Brick destroyed");
         }
     }
 }
