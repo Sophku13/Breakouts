@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BouncyBall : MonoBehaviour
 {
-    public float MinY = -5.5f;
-    public float MaxVelocity = 15f;
+    public float minY = -5.5f;
+    public float maxVelocity = 15f;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -16,14 +16,14 @@ public class BouncyBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < MinY)
+        if(transform.position.y < minY)
         {
             transform.position = Vector3.zero;
             rb.velocity = Vector3.zero;
         }
-        if(rb.velocity.magnitude > MaxVelocity)
+        if(rb.velocity.magnitude > maxVelocity)
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxVelocity);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float Speed;
-    public float BorderX = 7.5f;
-    float movementHorizontal;
+    public float speed;
+    public float borderX = 7.5f;
+    private float movementHorizontal;
     
     // Start is called before the first frame update
     void Start()
@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movementHorizontal = Input.GetAxis("Horizontal");
-        if((movementHorizontal > 0 && transform.position.x < BorderX) || (movementHorizontal < 0 && transform.position.x > -BorderX))
+        if((movementHorizontal > 0 && transform.position.x < borderX) || (movementHorizontal < 0 && transform.position.x > -borderX))
         {
-            transform.position += Vector3.right * movementHorizontal * Speed * Time.deltaTime; //frame rate adjusted for each device
+            transform.position += Vector3.right * movementHorizontal * speed * Time.deltaTime; //frame rate adjusted for each device
         }
     }
 }
