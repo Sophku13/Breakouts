@@ -7,6 +7,9 @@ public class BouncyBall : MonoBehaviour
     public float minY = -5.5f;
     public float maxVelocity = 15f;
     private Rigidbody2D rb;
+    
+    private int score = 0;
+    private int lives = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class BouncyBall : MonoBehaviour
         {
             transform.position = Vector3.zero;
             rb.velocity = Vector3.zero;
+            lives --; //goes below the floor/ minimum y position
         }
         if(rb.velocity.magnitude > maxVelocity)
         {
@@ -32,6 +36,7 @@ public class BouncyBall : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Debug.Log("Brick destroyed");
+            score += 5;
         }
     }
 }

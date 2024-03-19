@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     public Vector2Int size;
     public Vector2 offset;
     public GameObject brickPrefab;
+    public Gradient gradient;
 
     private void Awake() // called when the script instance is being loaded
     {
@@ -16,6 +17,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 GameObject newBrick = Instantiate(brickPrefab, transform);
                 newBrick.transform.position = transform.position + new Vector3((float)((size.x -1)* 0.5f - i) * offset.x, j * offset.y, 0);
+                newBrick.GetComponent<SpriteRenderer>().color = gradient.Evaluate((float) j / (size.y - 1));
             }
         }
     }
