@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Controls the behavior of the bouncy ball, including physics interactions,
+/// game state changes (score, lives), and triggering game over/win conditions.
+/// </summary>
+
 public class BouncyBall : MonoBehaviour
 {
     public float minY = -5.5f;
@@ -19,18 +24,21 @@ public class BouncyBall : MonoBehaviour
     private int score = 0;
     private int lives = 5;
     private int brickCounter;
-    // Start is called before the first frame update
+
+    /// Initialization of the ball's physics and setting up the initial game state.
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        brickCounter = FindObjectOfType<LevelGenerator>().transform.childCount;
-        rb.velocity = Vector2.down * 8f;
+        brickCounter = FindObjectOfType<LevelGenerator>().transform.childCount;  // Counts the initial number of bricks to determine when the game has been won.
+        rb.velocity = Vector2.down * 8f; // Sets initial downward velocity.
     }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Updates the ball's behavior each frame, checking for game over conditions
+    /// and enforcing maximum velocity constraints.
+    /// </summary>
     void Update()
     {
-        if(transform.position.y < minY)
+        if(transform.position.y < minY) // Checks if the ball has dropped below the minimum Y threshold.
         {
             if(lives <= 0)
             {
@@ -38,17 +46,21 @@ public class BouncyBall : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.zero;
+                transform.position = Vector3.zero; // Resets the ball's position and velocity, and decrements lives.
                 rb.velocity = Vector2.down * 8f;
                 lives --; //goes below the floor/ minimum y position
                 hearts[lives].SetActive(false);
             }
         }
-        if(rb.velocity.magnitude > maxVelocity)
+        if(rb.velocity.magnitude > maxVelocity) // Enforces a maximum velocity on the ball.
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
         }
     }
+    /// <summary>
+    /// Handles collision with bricks, destroying them, updating the score,
+    /// and checking for win conditions.
+    /// </summary>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Brick"))
@@ -62,10 +74,11 @@ public class BouncyBall : MonoBehaviour
             {
                 gameWonScreen.SetActive(true);
                 Time.timeScale = 0;
+                Debug.Log("Victory!");
             }
         }
     }
-    void GameOver()
+    void GameOver()  // Triggers the game over state, displaying the game over screen.
     {
         Debug.Log("Game Over :(");
         gameOverScreen.SetActive(true);
