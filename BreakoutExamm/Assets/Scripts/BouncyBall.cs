@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BouncyBall : MonoBehaviour
 {
     public float minY = -5.5f;
     public float maxVelocity = 15f;
     private Rigidbody2D rb;
+    public TextMeshProUGUI scoreTxt;
+    public GameObject[] hearts;
     
     private int score = 0;
     private int lives = 5;
@@ -24,6 +27,7 @@ public class BouncyBall : MonoBehaviour
             transform.position = Vector3.zero;
             rb.velocity = Vector3.zero;
             lives --; //goes below the floor/ minimum y position
+            hearts[lives].SetActive(false);
         }
         if(rb.velocity.magnitude > maxVelocity)
         {
@@ -37,6 +41,8 @@ public class BouncyBall : MonoBehaviour
             Destroy(collision.gameObject);
             Debug.Log("Brick destroyed");
             score += 5;
+            scoreTxt.text = score.ToString("00000");
         }
     }
+    
 }
