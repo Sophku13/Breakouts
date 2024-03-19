@@ -697,6 +697,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minY: -5.5
   maxVelocity: 15
+  scoreTxt: {fileID: 1422124017}
+  hearts:
+  - {fileID: 531011561}
+  - {fileID: 1343890858}
+  - {fileID: 399590108}
+  - {fileID: 196380057}
+  - {fileID: 1207227995}
 --- !u!1 &1343890858
 GameObject:
   m_ObjectHideFlags: 0

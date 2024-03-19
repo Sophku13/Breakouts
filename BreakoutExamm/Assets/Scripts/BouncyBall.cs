@@ -10,6 +10,7 @@ public class BouncyBall : MonoBehaviour
     private Rigidbody2D rb;
     public TextMeshProUGUI scoreTxt;
     public GameObject[] hearts;
+    public GameObject gameOverScreen;
     
     private int score = 0;
     private int lives = 5;
@@ -24,10 +25,17 @@ public class BouncyBall : MonoBehaviour
     {
         if(transform.position.y < minY)
         {
-            transform.position = Vector3.zero;
-            rb.velocity = Vector3.zero;
-            lives --; //goes below the floor/ minimum y position
-            hearts[lives].SetActive(false);
+            if(lives <= 0)
+            {
+                GameOver();
+            }
+            else
+            {
+                transform.position = Vector3.zero;
+                rb.velocity = Vector3.zero;
+                lives --; //goes below the floor/ minimum y position
+                hearts[lives].SetActive(false);
+            }
         }
         if(rb.velocity.magnitude > maxVelocity)
         {
@@ -44,5 +52,11 @@ public class BouncyBall : MonoBehaviour
             scoreTxt.text = score.ToString("00000");
         }
     }
-    
+    void GameOver()
+    {
+        Debug.Log("Game Over :(");
+        gameOverScreen.SetActive(true);
+        Time.timeScale = 0;
+        Destroy(gameObject);
+    }
 }
