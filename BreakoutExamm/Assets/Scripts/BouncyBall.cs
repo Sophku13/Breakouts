@@ -24,6 +24,7 @@ public class BouncyBall : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         brickCounter = FindObjectOfType<LevelGenerator>().transform.childCount;
+        rb.velocity = Vector2.down * 8f;
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class BouncyBall : MonoBehaviour
             else
             {
                 transform.position = Vector3.zero;
-                rb.velocity = Vector3.zero;
+                rb.velocity = Vector2.down * 8f;
                 lives --; //goes below the floor/ minimum y position
                 hearts[lives].SetActive(false);
             }
