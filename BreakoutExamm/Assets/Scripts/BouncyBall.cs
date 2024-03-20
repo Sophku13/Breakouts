@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// Controls the behavior of the bouncy ball, including physics interactions,
@@ -15,7 +15,7 @@ public class BouncyBall : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public TextMeshProUGUI scoreTxt;
+    public Text scoreTxt;
     public GameObject[] hearts;
 
     public GameObject gameOverScreen;
