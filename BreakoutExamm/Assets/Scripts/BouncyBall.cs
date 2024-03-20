@@ -21,7 +21,7 @@ public class BouncyBall : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject gameWonScreen;
     
-    private int score = 0;
+    public int score = 0;
     private int lives = 5;
     private int brickCounter;
 
