@@ -13,7 +13,7 @@ public class ScoreUpdateTest
         //ball setup from previous tests
         var ballGameObject = new GameObject("Ball");
         var ballRigidbody = ballGameObject.AddComponent<Rigidbody2D>();
-        ballGameObject.AddComponent<CircleCollider2D>();
+        ballGameObject.AddComponent<CircleCollider2D>(); // ball object is a sphere in the test because its literally a ball
         var bouncyBall = ballGameObject.AddComponent<BouncyBall>();
         ballRigidbody.gravityScale = 0; // Prevent the ball from falling 
 
